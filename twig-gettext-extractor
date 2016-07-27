@@ -22,8 +22,11 @@ if (file_exists($a = __DIR__.'/../../autoload.php')) {
     require_once __DIR__.'/vendor/autoload.php';
 }
 
-$twig = new Twig_Environment(new Twig\Gettext\Loader\Filesystem('/'), array(
-    'cache'       => '/tmp/cache/'.uniqid(),
+$tempDirectory = empty(getenv('TMPDIR')) ? DIRECTORY_SEPARATOR . 'tmp' : getenv('TMPDIR');
+$cacheDirectory = implode(DIRECTORY_SEPARATOR, array($tempDirectory, 'cache', uniqid()) );
+
+$twig = new Twig_Environment(new Twig\Gettext\Loader\Filesystem(DIRECTORY_SEPARATOR), array(
+    'cache'       => $cacheDirectory,
     'auto_reload' => true
 ));
 $twig->addExtension(new Twig_Extensions_Extension_I18n());
