@@ -58,4 +58,9 @@ foreach ($_SERVER['argv'] as $arg) {
     }
 }
 
+$extractor->addGettextParameter("--keyword=_");
+$extractor->addGettextParameter("--keyword=gettext");
+$extractor->addGettextParameter("--keyword=trans");
+$extractor->addGettextParameter("--keyword=transchoice");
+
 $extractor->extract();
